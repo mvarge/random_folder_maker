@@ -12,17 +12,29 @@ class Tree(object):
     def depth(self):
         return random.randint(0, self.max_depth)
 
-    def gen_tree(self):
-        os.makedirs("fake_tree")
-        parent = os.path.join(os.getcwd(), "fake_tree")
+    def word(self):
+        '''Generate an word and guarantees that it don't clashes
+        with any other existent directory.
+        
+        LBYL approach.
+        '''
+        word = fake_word()
+        if word not in os.listdir(os.getcwd()):
+            return word
+        else:
+            return "{0}_{1}".format(word, fake_word())
+
+    def gen_tree(self, root="root"):
+        parent = os.path.join(os.getcwd(), root)
+        os.makedirs(parent)
         os.chdir(parent)
         for node in self.nodes:
-            word = fake_word()
+            word = self.word()
             os.makedirs(word)
             os.chdir(os.path.join(parent, word))
             depth = self.depth()
             while depth:
-                folder = fake_word()
+                folder = self.word()
                 os.makedirs(folder)
                 os.chdir(os.path.join(os.getcwd(), folder))
                 depth -= 1
@@ -32,5 +44,7 @@ def fake_word():
     return random.choice(words)
 
 if __name__ == "__main__":
-    t = Tree(10, 10)
-    t.gen_tree()
+    from helper import parse
+    args = parse()
+    t = Tree(args.folders, args.depth)
+    t.gen_tree(args.name)
