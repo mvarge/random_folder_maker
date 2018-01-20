@@ -14,10 +14,12 @@ class Tree(object):
 
     def gen_tree(self):
         os.makedirs("fake_tree")
-        os.chdir(os.path.join(os.getcwd(), "fake_tree"))
+        parent = os.path.join(os.getcwd(), "fake_tree")
+        os.chdir(parent)
         for node in self.nodes:
-            parent = os.path.join(os.getcwd(), fake_word())
-            os.makedirs(parent)
+            word = fake_word()
+            os.makedirs(word)
+            os.chdir(os.path.join(parent, word))
             depth = self.depth()
             while depth:
                 folder = fake_word()
