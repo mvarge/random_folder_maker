@@ -8,6 +8,8 @@ The program relies on random samples so you can get different results depending 
 
 ## How to use it
 
+Calling as a command line:
+
 ```
 $ python tree_creator.py -n parent_folder -p 3 -d 3 -f 3
 $ find parent_folder/
