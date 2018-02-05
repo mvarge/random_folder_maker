@@ -5,7 +5,7 @@ Program to generate a random folder tree.
 Useful for scenarios where you need to simulate a large tree of folders, subfolders and files.
 
 The program relies on random samples so you can get different results depending of the maximum of folder, depth and files that you set up. You can use it both as a command line or a Python module.
- 
+
 ## How to use it
 
 Calling as a command line:
